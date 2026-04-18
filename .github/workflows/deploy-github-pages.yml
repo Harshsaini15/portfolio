@@ -36,23 +36,9 @@ jobs:
           node-version: '22'
           cache: npm
 
-      - name: Vite base path for GitHub Pages
-        id: vite_base
-        shell: bash
-        run: |
-          repo="${{ github.event.repository.name }}"
-          owner="${{ github.repository_owner }}"
-          if [[ "$repo" == "$owner.github.io" ]]; then
-            echo "base=/" >> "$GITHUB_OUTPUT"
-          else
-            echo "base=/$repo/" >> "$GITHUB_OUTPUT"
-          fi
-
       - run: npm ci
 
       - run: npm run build
-        env:
-          VITE_BASE: ${{ steps.vite_base.outputs.base }}
 
       - name: Verify production bundle (not dev index.html)
         run: |
