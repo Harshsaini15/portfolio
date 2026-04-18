@@ -1,4 +1,5 @@
-@import 'tailwindcss';
+/* Vite root is app/; Tailwind must scan src/ where components live (see tailwindcss.com/docs/content-configuration). */
+@import 'tailwindcss' source('.');
 
 /* Light (default) */
 :root {
