@@ -29,8 +29,8 @@ export function Projects() {
             Click to unpack the story
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-app-muted md:mx-0">
-            Each card expands with responsibilities, bullets, and stack tags —
-            built from your resume PDF.
+            From full-stack and data pipelines to ML experiments — each card
+            opens into what I built, why it mattered, and the stack behind it.
           </p>
         </motion.div>
 

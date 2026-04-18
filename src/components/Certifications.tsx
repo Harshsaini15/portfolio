@@ -15,19 +15,18 @@ export function Certifications() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: '-80px' }}
-          className="mb-10 flex flex-col items-center text-center md:flex-row md:items-end md:justify-between md:text-left"
+          className="mb-10 text-center md:text-left"
         >
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c45c3e] dark:text-[#e8a87c]">
-              Certifications
-            </p>
-            <h2 className="type-section-title mt-2 font-display text-3xl font-bold text-app-fg md:text-4xl">
-              Always leveling up
-            </h2>
-          </div>
-          <p className="mt-4 max-w-md text-sm text-app-subtle md:mt-0">
-            Curated from your resume — Oracle, Google Skills, IBM, Coursera,
-            NPTEL, and more.
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#c45c3e] dark:text-[#e8a87c]">
+            Certifications
+          </p>
+          <h2 className="type-section-title mt-2 font-display text-3xl font-bold text-app-fg md:text-4xl">
+            Always leveling up
+          </h2>
+          <p className="mx-auto mt-3 max-w-2xl text-app-muted md:mx-0">
+            Formal credentials across cloud, data science, ML, databases, and
+            responsible AI — proof of structured learning alongside coursework
+            and projects.
           </p>
         </motion.div>
 

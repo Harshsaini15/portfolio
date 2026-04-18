@@ -40,8 +40,10 @@ export function SkillsPie() {
             Where I spend my depth
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-app-muted md:mx-0">
-            Weighted mix inspired by coursework, projects, and certifications —
-            not exam percentages. Hover segments for detail.
+            A qualitative snapshot of where depth sits today: Python and the
+            data stack, ML and AI, Java and OOP, C/C++, web and SQL, plus tools
+            and cloud — informed by what I have actually built and certified
+            on, not a grade sheet. Hover a slice to read the category.
           </p>
         </motion.div>
 

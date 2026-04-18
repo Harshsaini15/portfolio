@@ -84,9 +84,6 @@ export function PositionsAndActivities() {
           <h2 className="type-section-title mt-2 font-display text-3xl font-bold text-app-fg md:text-4xl">
             Leadership & campus life
           </h2>
-          <p className="mx-auto mt-3 max-w-2xl text-app-muted md:mx-0">
-            Roles and activities from your resume — animated in as you scroll.
-          </p>
         </motion.div>
 
         <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">

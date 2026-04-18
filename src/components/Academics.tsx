@@ -103,8 +103,10 @@ export function Academics() {
             Momentum you can see
           </h2>
           <p className="mx-auto mt-3 max-w-2xl text-app-muted md:mx-0">
-            Semester GPAs trend upward; board scores sit in a compact “report
-            card” strip with animated fills.
+            BTech CSE (Data Science) at {profile.college.split('—')[0].trim()} —
+            cumulative GPA on a {profile.cgpaScale}-point scale, semester-wise
+            momentum, and board benchmarks together show sustained effort and
+            upward trajectory, not just a single number.
           </p>
         </motion.div>
 
