@@ -1,0 +1,329 @@
+@import 'tailwindcss';
+
+/* Light (default) */
+:root {
+  --app-bg: #f4f1eb;
+  --app-fg: #14151c;
+  --app-fg-muted: rgba(20, 21, 28, 0.68);
+  --app-fg-subtle: rgba(20, 21, 28, 0.55);
+  --app-fg-faint: rgba(20, 21, 28, 0.4);
+  --app-border: rgba(20, 21, 28, 0.1);
+  --app-elevated: #ffffff;
+  --app-nav: rgba(255, 255, 255, 0.88);
+  --app-card-fill: rgba(255, 255, 255, 0.65);
+  --app-card-fill-soft: rgba(255, 255, 255, 0.45);
+  --app-glass: rgba(255, 255, 255, 0.78);
+  --app-glass-border: rgba(20, 21, 28, 0.09);
+  --app-tag-bg: rgba(20, 21, 28, 0.07);
+  --app-tag-fg: rgba(20, 21, 28, 0.82);
+  --app-hover-overlay: rgba(20, 21, 28, 0.06);
+  --app-code-bg: rgba(20, 21, 28, 0.07);
+  --app-shadow: rgba(20, 21, 28, 0.1);
+  --app-shadow-lg: rgba(20, 21, 28, 0.14);
+  --mesh-1: #f4f1eb;
+  --mesh-2: #ebe4dc;
+  --mesh-3: #f4f1eb;
+  --mesh-4: #e8eef5;
+  --mesh-5: #f4f1eb;
+  --app-hero-inner: #e8e4df;
+  --app-footer-from: rgba(196, 92, 62, 0.14);
+  --app-footer-mid: #ffffff;
+  --app-footer-to: #f4f1eb;
+  --app-project-expanded: rgba(255, 255, 255, 0.94);
+  --app-ring-track: rgba(20, 21, 28, 0.12);
+  --app-bar-track: rgba(20, 21, 28, 0.12);
+  --color-border-subtle: var(--app-glass-border);
+  --grad-name-a: #14151c;
+  --grad-name-b: #3d2f28;
+}
+
+/* Dark */
+.dark {
+  --app-bg: #0c0d10;
+  --app-fg: #e8e6e3;
+  --app-fg-muted: rgba(232, 230, 227, 0.65);
+  --app-fg-subtle: rgba(232, 230, 227, 0.55);
+  --app-fg-faint: rgba(232, 230, 227, 0.42);
+  --app-border: rgba(255, 255, 255, 0.1);
+  --app-elevated: #14151c;
+  --app-nav: rgba(12, 13, 16, 0.82);
+  --app-card-fill: rgba(255, 255, 255, 0.04);
+  --app-card-fill-soft: rgba(255, 255, 255, 0.03);
+  --app-glass: rgba(20, 21, 28, 0.65);
+  --app-glass-border: rgba(255, 255, 255, 0.08);
+  --app-tag-bg: rgba(0, 0, 0, 0.32);
+  --app-tag-fg: rgba(232, 230, 227, 0.78);
+  --app-hover-overlay: rgba(255, 255, 255, 0.06);
+  --app-code-bg: rgba(255, 255, 255, 0.1);
+  --app-shadow: rgba(0, 0, 0, 0.4);
+  --app-shadow-lg: rgba(0, 0, 0, 0.5);
+  --mesh-1: #0c0d10;
+  --mesh-2: #1a1210;
+  --mesh-3: #0c0d10;
+  --mesh-4: #121820;
+  --mesh-5: #0c0d10;
+  --app-hero-inner: #14151c;
+  --app-footer-from: rgba(196, 92, 62, 0.25);
+  --app-footer-mid: #14151c;
+  --app-footer-to: #0c0d10;
+  --app-project-expanded: rgba(0, 0, 0, 0.28);
+  --app-ring-track: rgba(255, 255, 255, 0.08);
+  --app-bar-track: rgba(255, 255, 255, 0.1);
+  --color-border-subtle: var(--app-glass-border);
+  --grad-name-a: #f7f4f0;
+  --grad-name-b: #d8cfc4;
+}
+
+@theme {
+  --font-display: 'Outfit', system-ui, sans-serif;
+  --font-sans: 'Manrope', system-ui, sans-serif;
+  --color-terracotta: #c45c3e;
+  --color-terracotta-dim: #9a4630;
+  --color-surface: var(--app-bg);
+  --color-app-bg: var(--app-bg);
+  --color-surface-elevated: var(--app-elevated);
+  --color-app-fg: var(--app-fg);
+  --color-app-muted: var(--app-fg-muted);
+  --color-app-subtle: var(--app-fg-subtle);
+  --color-app-faint: var(--app-fg-faint);
+  --color-app-border: var(--app-border);
+  --color-app-elevated: var(--app-elevated);
+  --color-app-nav: var(--app-nav);
+  --color-app-tag-fg: var(--app-tag-fg);
+  --color-app-card-fill: var(--app-card-fill);
+  --color-app-card-fill-soft: var(--app-card-fill-soft);
+  --color-app-hover-overlay: var(--app-hover-overlay);
+  --color-app-code-bg: var(--app-code-bg);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100svh;
+  font-family: var(--font-sans);
+  font-optical-sizing: auto;
+  font-variation-settings: 'wght' 440;
+  background: var(--app-bg);
+  color: var(--app-fg);
+  overflow-x: hidden;
+  transition:
+    background-color 0.35s ease,
+    color 0.35s ease,
+    font-variation-settings 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-optical-sizing: auto;
+}
+
+/* Variable-weight display: responds to hover (section titles, etc.) */
+.type-section-title {
+  font-variation-settings: 'wght' 700;
+  letter-spacing: -0.03em;
+  transition:
+    font-variation-settings 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 0.45s ease;
+}
+
+.type-section-title:hover {
+  font-variation-settings: 'wght' 800;
+  letter-spacing: -0.035em;
+}
+
+.type-heading-sm {
+  font-variation-settings: 'wght' 600;
+  transition: font-variation-settings 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.type-heading-sm:hover {
+  font-variation-settings: 'wght' 720;
+}
+
+/* Hero: subtitle tightens weight when hovering the headline block */
+.hero-headline-block .hero-headline-sub {
+  font-variation-settings: 'wght' 560;
+  transition:
+    font-variation-settings 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    letter-spacing 0.45s ease,
+    color 0.35s ease;
+}
+
+.hero-headline-block:hover .hero-headline-sub {
+  font-variation-settings: 'wght' 640;
+  letter-spacing: -0.02em;
+}
+
+/* Nav links: axis “breathe” on hover */
+.nav-type {
+  font-variation-settings: 'wght' 480;
+  transition: font-variation-settings 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.nav-type:hover,
+.nav-type:focus-visible {
+  font-variation-settings: 'wght' 640;
+}
+
+.type-cta {
+  font-variation-settings: 'wght' 580;
+  transition:
+    font-variation-settings 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.type-cta:hover {
+  font-variation-settings: 'wght' 680;
+}
+
+/* Pointer-driven gradient name layer */
+.type-interactive-name {
+  cursor: default;
+  padding-block: 0.04em;
+  -webkit-text-fill-color: transparent;
+}
+
+#root {
+  min-height: 100svh;
+}
+
+::selection {
+  background: rgba(196, 92, 62, 0.35);
+  color: var(--app-fg);
+}
+
+.dark ::selection {
+  color: #fff;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-12px) scale(1.02);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    opacity: 0.45;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.gradient-mesh {
+  background: linear-gradient(
+    125deg,
+    var(--mesh-1) 0%,
+    var(--mesh-2) 25%,
+    var(--mesh-3) 50%,
+    var(--mesh-4) 75%,
+    var(--mesh-5) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradient-shift 18s ease infinite;
+  transition: background 0.4s ease;
+}
+
+.noise-overlay {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  opacity: 0.035;
+  z-index: 50;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.dark .noise-overlay {
+  opacity: 0.04;
+}
+
+.glass-panel {
+  background: var(--app-glass);
+  backdrop-filter: blur(16px);
+  border: 1px solid var(--app-glass-border);
+  transition: background-color 0.35s ease, border-color 0.35s ease;
+}
+
+.shadow-nav {
+  box-shadow: 0 20px 60px var(--app-shadow-lg);
+}
+
+.shadow-card-project {
+  box-shadow: 0 24px 80px var(--app-shadow);
+}
+
+/* Resume-style section blocks (positions & activities) */
+@keyframes resume-header-shine {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.resume-block-header {
+  background: linear-gradient(
+    105deg,
+    var(--app-card-fill) 0%,
+    var(--app-elevated) 40%,
+    var(--app-card-fill) 80%
+  );
+  background-size: 200% 100%;
+  animation: resume-header-shine 6s ease-in-out infinite;
+}
+
+.dark .resume-block-header {
+  background: linear-gradient(
+    105deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.1) 45%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+  background-size: 200% 100%;
+}
+
+.role-emphasis {
+  font-variation-settings: 'wght' 650;
+  transition: font-variation-settings 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s ease;
+}
+
+.resume-list-item:hover .role-emphasis {
+  font-variation-settings: 'wght' 780;
+  color: var(--color-terracotta, #c45c3e);
+}
