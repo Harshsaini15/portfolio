@@ -1,0 +1,58 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - name: Vite base path for GitHub Pages
+        id: vite_base
+        shell: bash
+        run: |
+          repo="${{ github.event.repository.name }}"
+          owner="${{ github.repository_owner }}"
+          if [[ "$repo" == "$owner.github.io" ]]; then
+            echo "base=/" >> "$GITHUB_OUTPUT"
+          else
+            echo "base=/$repo/" >> "$GITHUB_OUTPUT"
+          fi
+
+      - run: npm ci
+
+      - run: npm run build
+        env:
+          VITE_BASE: ${{ steps.vite_base.outputs.base }}
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/deploy-pages@v4
+        id: deployment
