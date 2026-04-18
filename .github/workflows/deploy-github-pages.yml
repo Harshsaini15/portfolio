@@ -1,24 +1,26 @@
-# Builds the site and pushes ./dist to the gh-pages branch.
+# Builds the site and commits the output to ./docs on the same branch.
 #
-# GitHub Pages setup (one-time):
+# GitHub Pages (one-time):
 #   Settings → Pages → Build and deployment → Source: Deploy from a branch
-#   Branch: gh-pages  /  Folder: / (root)
+#   Branch: main (or master)  →  Folder: /docs
 #
-# Do NOT use "main" + / (root) as the Pages source — that publishes this repo's
-# source index.html (with /src/main.tsx) and causes a blank page.
+# Publishing "main" + / (root) serves the dev index.html (/src/main.tsx) and
+# will always show a blank page. The live site must come from ./docs (this workflow).
 
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main, master]
+    paths-ignore:
+      - 'docs/**'
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: gh-pages-deploy
+  group: pages-docs-deploy
   cancel-in-progress: true
 
 jobs:
@@ -26,6 +28,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -57,8 +61,16 @@ jobs:
             exit 1
           fi
 
-      - uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist
-          force_orphan: true
+      - name: Publish build to docs/
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -rf docs
+          cp -R dist docs
+          git add docs
+          if git diff --staged --quiet; then
+            echo "No changes under docs/ — skipping commit"
+            exit 0
+          fi
+          git commit -m "chore: publish site to docs"
+          git push
